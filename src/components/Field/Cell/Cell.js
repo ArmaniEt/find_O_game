@@ -7,7 +7,9 @@ function Cell(props) {
     if(props.cell.open) cellClass += ' open';
     if(props.cell.hasItem) cellClass += ' has-item';
 
-    return <div className={cellClass} onClick={props.click}/>
+    return (
+        <div className={cellClass} onClick={props.click}/>
+    )
 }
 
 

@@ -39,7 +39,7 @@ class App extends Component {
     };
 
     openCell = (id) => {
-        //check if you are winner or not
+        //check if you found an 'O'
         if (!this.state.isWin) {
             let cell = {...this.state.cells[id]};
             if (!cell.open) {
@@ -54,7 +54,7 @@ class App extends Component {
 
                 this.setState(state);
 
-                // if you are find an element
+                // if you are found an element
                 if (cells[id].hasItem) {
 
                     // pass is open as property to open cell, and change the state: (cells, counter, isWin)
@@ -106,9 +106,9 @@ class App extends Component {
                 <Counter
                     counter={this.state.counter}
                 />
+                {this.state.isWin ? <p className="win_text">You won, Congrats!</p> : null}
                 <Button
                     gameReset={this.resetGame}
-
                 />
             </div>
         );

@@ -68,3 +68,7 @@
 .cell.open.has-item::after {
     content: 'O';
 }
+
+.win_text {
+    text-align: center;
+}
