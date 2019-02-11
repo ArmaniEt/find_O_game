@@ -4,7 +4,24 @@
     margin: 0 auto;
 }
 
+
+.counter {
+    margin-top: 25px;
+    width: 100%;
+}
+
+.counter-text {
+    text-align: center;
+}
+
+.button-wrapper {
+    width: 100%;
+    margin-top: 20px;
+}
+
 .button {
+    margin: 0 auto;
+    display: block;
     max-width: 100px;
     box-shadow: None;
     background: cadetblue;
@@ -14,14 +31,16 @@
 
 .field {
     padding: 20px;
-    width: 360px;
-    height: 360px;
+    width: 400px;
+    height: 370px;
     margin: 0 auto;
     font-size: 0;
 
 }
 
 .cell {
+    position: relative;
+    background: coral;
     width: 56px;
     height: 56px;
     margin: 2px;

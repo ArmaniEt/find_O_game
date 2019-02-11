@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import './App.css';
 import Field from './components/Field/Field';
 import Cell from './components/Field/Cell/Cell';
+import Button from './components/Button/Button';
+import Counter from './components/Counter/Counter';
 
 
-// pass cell variable to Cell.js
+// pass cell variable to Cell.js*
 
 const FIELD_SIZE = 6;
 
@@ -54,6 +56,17 @@ class App extends Component {
     render() {
         return (
             <div className="container">
+                <Field>
+                    {this.state.cells.map((item, index) =>
+                        <Cell
+                            cell={item}
+                            key={index}
+                            click={() => this.openCell(index)}
+                        />
+                    )}
+                </Field>
+                <Counter/>
+                <Button/>
             </div>
         );
     }
