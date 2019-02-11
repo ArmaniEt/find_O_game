@@ -16,7 +16,8 @@ class App extends Component {
 
         this.state = {
             cells: this.generateCells(), // an array, inside the array we have an object
-            counter: 0
+            counter: 0,
+            isWin: false
         };
 
 
@@ -27,7 +28,7 @@ class App extends Component {
         let cells = [];
         let cellsCount = FIELD_SIZE ** 2;
 
-        for(let i = 0; i < cellsCount; i++){
+        for (let i = 0; i < cellsCount; i++) {
             cells.push({open: false, hasItem: false})
         }
 
@@ -38,19 +39,35 @@ class App extends Component {
     };
 
     openCell = (id) => {
-      let cell = {...this.state.cells[id]};
-      if (!cell.open) {
-          cell.open  = true;
+        //check if you are winner or not
+        if (!this.state.isWin) {
+            let cell = {...this.state.cells[id]};
+            if (!cell.open) {
+                cell.open = true;
 
-          let cells = [...this.state.cells];
-          cells[id] = cell;
+                let cells = [...this.state.cells];
+                cells[id] = cell;
 
-          let state = {...this.state};
-          state.cells = cells;
-          state.counter = state.counter + 1;
+                let state = {...this.state};
+                state.cells = cells;
+                state.counter = state.counter + 1;
 
-          this.setState(state);
-      }
+                this.setState(state);
+
+                // if you are find an element
+                if (cells[id].hasItem) {
+
+                    // pass is open as property to open cell, and change the state: (cells, counter, isWin)
+                    cells[id] = cell;
+                    let state = {...this.state};
+                    state.cells = cells;
+                    state.counter = state.counter + 1;
+                    state.isWin = true;
+
+                    this.setState(state);
+                }
+            }
+        }
     };
 
     resetGame = () => {
@@ -61,9 +78,10 @@ class App extends Component {
 
         let state = {...this.state};
         state.counter = 0;
+        state.isWin = false; // to start the game from the beginning
         let i = 0;
-        while(i < state.cells.length){
-            if(state.cells[i].open){
+        while (i < state.cells.length) {
+            if (state.cells[i].open) {
                 state.cells[i].open = false;
             }
             i++;
