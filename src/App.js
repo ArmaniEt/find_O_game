@@ -53,6 +53,26 @@ class App extends Component {
       }
     };
 
+    resetGame = () => {
+        // unpacked state
+        // change counter
+        // close opened squares
+        // set changed state
+
+        let state = {...this.state};
+        state.counter = 0;
+        let i = 0;
+        while(i < state.cells.length){
+            if(state.cells[i].open){
+                state.cells[i].open = false;
+            }
+            i++;
+        }
+
+        this.setState(state);
+
+    };
+
     render() {
         return (
             <div className="container">
@@ -65,8 +85,13 @@ class App extends Component {
                         />
                     )}
                 </Field>
-                <Counter/>
-                <Button/>
+                <Counter
+                    counter={this.state.counter}
+                />
+                <Button
+                    gameReset={this.resetGame}
+
+                />
             </div>
         );
     }
